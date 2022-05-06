@@ -564,6 +564,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2416446860813782688, guid: fc3ab61cf8688417c940f4b8d3c60c5e, type: 3}
   m_PrefabInstance: {fileID: 1413867035425058959}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8788821432670086720 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7667160751526041295, guid: fc3ab61cf8688417c940f4b8d3c60c5e, type: 3}
+  m_PrefabInstance: {fileID: 1413867035425058959}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2499696930747217210 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3544233464112301493, guid: fc3ab61cf8688417c940f4b8d3c60c5e, type: 3}
@@ -588,6 +593,54 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1981560977769458191, guid: 3b8bbbc67aef94e6f85a68ad135220f1, type: 3}
+--- !u!114 &8643471543851131641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2499696930747217210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6757b231cedd544c583ef8aeaf773b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thickness: 0
+  material: {fileID: 0}
+  filter: -65535
+  m_SourceCollider: {fileID: 1413867035425058953}
+  m_DistanceField: {fileID: 0}
+--- !u!64 &933285374174881773
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8788821432670086720}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4866493458697715864, guid: 3b8bbbc67aef94e6f85a68ad135220f1, type: 3}
+--- !u!114 &340722950112081424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8788821432670086720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6757b231cedd544c583ef8aeaf773b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thickness: 0
+  material: {fileID: 0}
+  filter: -65535
+  m_SourceCollider: {fileID: 933285374174881773}
+  m_DistanceField: {fileID: 0}
 --- !u!1001 &1742773624526125033
 PrefabInstance:
   m_ObjectHideFlags: 0
