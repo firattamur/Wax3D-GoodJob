@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2150141034416556329, guid: 4f587d07ae7fa4e5cb9a738ddae99d4b, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2150141034416556329, guid: 4f587d07ae7fa4e5cb9a738ddae99d4b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -184,17 +184,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f587d07ae7fa4e5cb9a738ddae99d4b, type: 3}
---- !u!114 &473853833 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4776097695638481767, guid: bae46fff564724db28ab7a4d76a5d74d, type: 3}
-  m_PrefabInstance: {fileID: 1963090698}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8b45ebbf86be4df6b0e6cd933812af2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1109013857
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,6 +276,49 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1534676847}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1249201134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1249201136}
+  - component: {fileID: 1249201135}
+  m_Layer: 0
+  m_Name: OniCollisionWorld
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1249201135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249201134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d02d25c24c8574316883c920912e4fdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1249201136
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249201134}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1524473099
 GameObject:
@@ -416,7 +448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleRenderers:
-  - {fileID: 473853833}
+  - {fileID: 6295937065997112288}
   settings:
     blendSource: 3
     blendDestination: 3
@@ -441,103 +473,75 @@ MonoBehaviour:
     refractionDownsample: 1
     generateFoam: 1
     foamDownsample: 1
---- !u!1001 &1963090698
+--- !u!1001 &1060083868909918639
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4839299121085658512, guid: bae46fff564724db28ab7a4d76a5d74d, type: 3}
-      propertyPath: m_Name
-      value: Wax Stick
-      objectReference: {fileID: 0}
-    - target: {fileID: 5216140635955523370, guid: bae46fff564724db28ab7a4d76a5d74d, type: 3}
+    - target: {fileID: 1281579956410327731, guid: c7d3e8303e640498c8f68cf6a7382063, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 5216140635955523370, guid: bae46fff564724db28ab7a4d76a5d74d, type: 3}
+    - target: {fileID: 1281579956410327731, guid: c7d3e8303e640498c8f68cf6a7382063, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.03
+      value: 0.08118728
       objectReference: {fileID: 0}
-    - target: {fileID: 5216140635955523370, guid: bae46fff564724db28ab7a4d76a5d74d, type: 3}
+    - target: {fileID: 1281579956410327731, guid: c7d3e8303e640498c8f68cf6a7382063, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.013
+      value: -0.2104098
       objectReference: {fileID: 0}
-    - target: {fileID: 5216140635955523370, guid: bae46fff564724db28ab7a4d76a5d74d, type: 3}
+    - target: {fileID: 1281579956410327731, guid: c7d3e8303e640498c8f68cf6a7382063, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.356
+      value: 0.02469568
       objectReference: {fileID: 0}
-    - target: {fileID: 5216140635955523370, guid: bae46fff564724db28ab7a4d76a5d74d, type: 3}
+    - target: {fileID: 1281579956410327731, guid: c7d3e8303e640498c8f68cf6a7382063, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.030028906
+      value: 0.82516414
       objectReference: {fileID: 0}
-    - target: {fileID: 5216140635955523370, guid: bae46fff564724db28ab7a4d76a5d74d, type: 3}
+    - target: {fileID: 1281579956410327731, guid: c7d3e8303e640498c8f68cf6a7382063, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.39395496
+      value: 0.29399008
       objectReference: {fileID: 0}
-    - target: {fileID: 5216140635955523370, guid: bae46fff564724db28ab7a4d76a5d74d, type: 3}
+    - target: {fileID: 1281579956410327731, guid: c7d3e8303e640498c8f68cf6a7382063, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.91803557
+      value: 0.46115127
       objectReference: {fileID: 0}
-    - target: {fileID: 5216140635955523370, guid: bae46fff564724db28ab7a4d76a5d74d, type: 3}
+    - target: {fileID: 1281579956410327731, guid: c7d3e8303e640498c8f68cf6a7382063, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.03329407
+      value: -0.14146928
       objectReference: {fileID: 0}
-    - target: {fileID: 5216140635955523370, guid: bae46fff564724db28ab7a4d76a5d74d, type: 3}
+    - target: {fileID: 1281579956410327731, guid: c7d3e8303e640498c8f68cf6a7382063, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 4.864
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5216140635955523370, guid: bae46fff564724db28ab7a4d76a5d74d, type: 3}
+    - target: {fileID: 1281579956410327731, guid: c7d3e8303e640498c8f68cf6a7382063, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -178.338
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5216140635955523370, guid: bae46fff564724db28ab7a4d76a5d74d, type: 3}
+    - target: {fileID: 1281579956410327731, guid: c7d3e8303e640498c8f68cf6a7382063, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -46.38
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3885448646667372276, guid: c7d3e8303e640498c8f68cf6a7382063, type: 3}
+      propertyPath: m_Name
+      value: Wax Stick Obi Solver
+      objectReference: {fileID: 0}
+    - target: {fileID: 6379694855135302839, guid: c7d3e8303e640498c8f68cf6a7382063, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1534676846}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bae46fff564724db28ab7a4d76a5d74d, type: 3}
---- !u!1 &2045234027
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2045234029}
-  - component: {fileID: 2045234028}
-  m_Layer: 0
-  m_Name: OniCollisionWorld
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2045234028
+  m_SourcePrefab: {fileID: 100100000, guid: c7d3e8303e640498c8f68cf6a7382063, type: 3}
+--- !u!114 &6295937065997112288 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 6478856662995585615, guid: c7d3e8303e640498c8f68cf6a7382063, type: 3}
+  m_PrefabInstance: {fileID: 1060083868909918639}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2045234027}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d02d25c24c8574316883c920912e4fdb, type: 3}
+  m_Script: {fileID: 11500000, guid: c8b45ebbf86be4df6b0e6cd933812af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &2045234029
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2045234027}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
