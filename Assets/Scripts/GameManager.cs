@@ -1,15 +1,33 @@
+using System;
 using GameState;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
 
+    public WaxMeshController  waxMeshController;
+    public WaxStickController waxStickController;
+
+    public GameObject waxStick;
+    public GameObject level;
+
     private State _currentState;
-    
-    private void SetState(State state)
+    public static GameManager instance;
+
+    private void Awake()
+    {
+        
+        if (instance != null)
+            Destroy(instance);
+        else
+            instance = this;
+        
+    }
+
+    public void SetState(State state)
     {
         _currentState = state;
-        StartCoroutine(state.StartStateCoroutine());
+        state.StartState();
     }
     
     private void Start()
@@ -20,6 +38,16 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         
+    }    
+    
+    public void DestroyWaxStick()
+    {
+        Destroy(waxStick);
+    }
+    
+    public void DestroyLevel()
+    {
+        Destroy(level);
     }
     
 }

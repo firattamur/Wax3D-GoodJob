@@ -1,19 +1,17 @@
-using System.Collections;
 
 namespace GameState
 {
     public abstract class State
     {
-        private readonly GameManager _gameManager;
+        protected readonly GameManager gameManager;
 
         protected State(GameManager gameManager)
         {
-            _gameManager = gameManager;
+            this.gameManager = gameManager;
         }
 
-        public virtual IEnumerator StartStateCoroutine()
+        public virtual void StartState()
         {
-            yield break;
         }
     
     }

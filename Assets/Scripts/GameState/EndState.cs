@@ -1,10 +1,9 @@
 
 namespace GameState
 {
-    public class WaxApplyState: State
+    public class EndState: State
     {
-        
-        public WaxApplyState(GameManager gameManager) : base(gameManager)
+        public EndState(GameManager gameManager) : base(gameManager)
         {
         }
 

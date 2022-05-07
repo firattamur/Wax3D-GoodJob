@@ -1,4 +1,5 @@
 using System;
+using GameState;
 using Obi;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ public class WaxStickController : MonoBehaviour
     [SerializeField] private ObiParticleRenderer _obiParticleRenderer;
 
     public delegate void WaxStickAnimation();
-    public static event WaxStickAnimation waxStickAnimationStopped;
+    public static event WaxStickAnimation OnWaxStickAnimationStopped;
     
     private float   _cameraZDistance;
     private Vector3 _screenPosition;
@@ -21,7 +22,7 @@ public class WaxStickController : MonoBehaviour
     {
         camera = camera ? camera : Camera.main;
     }
-    
+
     private void Start()
     {
         _cameraZDistance  = camera.WorldToScreenPoint(transform.position).z;
@@ -38,7 +39,6 @@ public class WaxStickController : MonoBehaviour
 
         float mousePosX = Input.mousePosition.x;
         float mousePosY = Input.mousePosition.y;
-        float mousePosZ = Input.mousePosition.z;
         
         _screenPosition   = new Vector3(mousePosX, mousePosY, _cameraZDistance);
         _newWorldPosition = camera.ScreenToWorldPoint(_screenPosition);
@@ -50,19 +50,33 @@ public class WaxStickController : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
 
-        if (_obiEmitter.activeParticleCount == _obiEmitter.particleCount)
+        if (ShouldAnimationStop())
         {
-            _obiParticleRenderer.enabled = false;
-            waxStickAnimationStopped.Invoke();
+            StopAnimation();
         }
-        
+
         _obiEmitter.speed = 2;
 
+    }
+
+    private bool ShouldAnimationStop()
+    {
+        return _obiEmitter.activeParticleCount == _obiEmitter.particleCount;
+    }
+
+    private void StopAnimation()
+    {
+        OnWaxStickAnimationStopped?.Invoke();
     }
 
     private void OnTriggerExit(Collider other)
     {
         _obiEmitter.speed = 0;
+    }
+
+    public void DisableWaxStick()
+    {
+        _obiParticleRenderer.enabled = false;
     }
 
 }

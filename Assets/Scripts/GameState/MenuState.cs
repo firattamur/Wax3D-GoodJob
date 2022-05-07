@@ -1,4 +1,3 @@
-using System.Collections;
 
 namespace GameState
 {
@@ -8,9 +7,8 @@ namespace GameState
         {
         }
 
-        public override IEnumerator StartStateCoroutine()
+        public override void StartState()
         {
-            yield break;
         }
         
     }

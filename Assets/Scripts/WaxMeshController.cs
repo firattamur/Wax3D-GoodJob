@@ -1,26 +1,28 @@
 using System;
+using GameState;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class WaxMeshController : MonoBehaviour
 {
 
-    [SerializeField] private MeshRenderer _meshRenderer;
+    [SerializeField] private MeshRenderer meshRenderer;
     
     private void OnEnable()
     {
 
-        WaxStickController.waxStickAnimationStopped += DryWaxMesh;
+        WaxStickController.OnWaxStickAnimationStopped += DryWaxMesh;
 
     }
 
     private void OnDisable()
     {
-        WaxStickController.waxStickAnimationStopped -= DryWaxMesh;
+        WaxStickController.OnWaxStickAnimationStopped -= DryWaxMesh;
     }
 
     void Start()
     {
-        
+         
     }
 
     void Update()
@@ -28,9 +30,14 @@ public class WaxMeshController : MonoBehaviour
         
     }
 
-    public void DryWaxMesh()
+    private void DryWaxMesh()
     {
-        _meshRenderer.enabled = true;
+        LeanTween.alpha(meshRenderer.gameObject, 1.0f, 2f).setOnComplete(OnWaxMeshDry);
+    }
+
+    private void OnWaxMeshDry()
+    {
+        GameManager.instance.SetState(new WaxRemoveState(GameManager.instance));
     }
 
 }
