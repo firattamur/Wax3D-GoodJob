@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Controllers
 {
-    public class WaxMeshController : MonoBehaviour
+    public class WaxMesh : MonoBehaviour
     {
 
         [SerializeField] private MeshRenderer meshRenderer;
@@ -18,13 +18,13 @@ namespace Controllers
         private void OnEnable()
         {
 
-            WaxStickController.OnWaxStickAnimationStopped += DryWaxMesh;
+            WaxStick.OnWaxStickAnimationStopped += DryWaxMesh;
 
         }
 
         private void OnDisable()
         {
-            WaxStickController.OnWaxStickAnimationStopped -= DryWaxMesh;
+            WaxStick.OnWaxStickAnimationStopped -= DryWaxMesh;
         }
 
         private void Update()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Controllers
 {
-    public class WaxStickController : MonoBehaviour
+    public class WaxStick : MonoBehaviour
     {
 
         [SerializeField] private Camera camera;

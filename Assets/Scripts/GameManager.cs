@@ -6,11 +6,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    public WaxMeshController  waxMeshController;
-    public WaxStickController waxStickController;
+    public WaxMesh  waxMesh;
+    public WaxStick waxStick;
 
-    public GameObject waxStick;
-    public GameObject level;
+    public GameObject waxStickGameObject;
+    public GameObject hairyArmGameObject;
 
     private State _currentState;
     public static GameManager instance;
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     
     public void DestroyLevel()
     {
-        Destroy(level);
+        Destroy(hairyArmGameObject);
     }
     
 }
