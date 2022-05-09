@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Controllers
 {
-    public class WaxStickController : MonoBehaviour
+    public class WaxStick : MonoBehaviour
     {
 
         [SerializeField] private Camera camera;
@@ -22,6 +22,8 @@ namespace Controllers
         private void Awake()
         {
             camera = camera ? camera : Camera.main;
+            camera.GetComponent<ObiFluidRenderer>().particleRenderers[0] =
+                obiEmitter.GetComponent<ObiParticleRenderer>();
         }
 
         private void Start()
