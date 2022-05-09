@@ -9,8 +9,6 @@ public class GameManager : Singleton<GameManager>
 
     public MenuController menuController;
     
-    public static GameManager instance;
-
     private void Awake()
     {
         base.Awake();

@@ -10,11 +10,9 @@ namespace Controllers
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private MegaBend megaBend;
         [SerializeField] private GameObject hairs;
-        [SerializeField] private float megaBendUpdateAngle = 2f;
+        [SerializeField] private float megaBendUpdateAngleValue = 2f;
         [SerializeField] private float megaBendMaxAngle = 60f;
             
-        private float _megaBendAngleIncrease;
-        
         private void OnEnable()
         {
 
@@ -37,9 +35,9 @@ namespace Controllers
             
             if (megaBend.angle == 0)
                 return;
-            
+
             if (LeanTween.isPaused())
-                megaBend.angle += _megaBendAngleIncrease;
+                megaBend.angle += megaBendUpdateAngleValue; 
 
             if (megaBend.angle > megaBendMaxAngle)
                 MoveWaxOutOfScreen();
@@ -53,7 +51,7 @@ namespace Controllers
 
         private void ChangeStateToMenu()
         {
-            GameManager.instance.SetState(new MenuState(GameManager.instance));
+            GameManager.Instance.SetState(new MenuState(GameManager.Instance));
         }
         
         private void TouchDrag()
@@ -62,8 +60,6 @@ namespace Controllers
             if (Input.touchCount <= 0)
             {
                 
-                _megaBendAngleIncrease = -megaBendUpdateAngle;
-                
                 if (LeanTween.isPaused())
                     LeanTween.resume(gameObject);
                 
@@ -71,32 +67,32 @@ namespace Controllers
                 
             }
             
-            if (!LeanTween.isPaused())
-                LeanTween.pause(gameObject);
-            
             var touch = Input.GetTouch(0);
             if (touch.phase != TouchPhase.Stationary && touch.phase != TouchPhase.Moved) return;
 
-            _megaBendAngleIncrease = megaBendUpdateAngle;
-
+            if (!LeanTween.isPaused())
+                LeanTween.pause(gameObject);
+            
         }
 
         private void DryWaxMesh()
         {
-            LeanTween.alpha(meshRenderer.gameObject, 1.0f, 2f).setOnComplete(OnWaxMeshDry);
+            LeanTween.alpha(meshRenderer.gameObject, 1.0f, 2f).setOnComplete(OnWaxMeshDried);
         }
 
-        private void OnWaxMeshDry()
+        private void OnWaxMeshDried()
         {
             
             hairs.SetActive(false);
-            LeanTween.value(gameObject, UpdateBendAngleValue, 0f, 15f, 3f).setLoopPingPong();
             
-            GameManager.instance.SetState(new WaxRemoveState(GameManager.instance));
+            // simple animation loop to guide player to remove wax
+            LeanTween.value(gameObject, UpdateMegaBendAngleValue, 0f, 10f, 2f).setLoopPingPong();
+            
+            GameManager.Instance.SetState(new WaxRemoveState(GameManager.Instance));
             
         }
         
-        void UpdateBendAngleValue( float val )
+        void UpdateMegaBendAngleValue( float val )
         {
             megaBend.angle = val;
         }

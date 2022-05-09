@@ -12,7 +12,6 @@ namespace Controllers
         [SerializeField] private int emitSpeed = 2;
         [SerializeField] private ObiParticleRenderer obiParticleRenderer;
         
-
         public delegate void WaxStickAnimation();
         public static event WaxStickAnimation OnWaxStickAnimationStopped;
     
