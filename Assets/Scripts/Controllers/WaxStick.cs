@@ -11,6 +11,7 @@ namespace Controllers
         [SerializeField] private ObiEmitter obiEmitter;
         [SerializeField] private int emitSpeed = 2;
         [SerializeField] private ObiParticleRenderer obiParticleRenderer;
+        
 
         public delegate void WaxStickAnimation();
         public static event WaxStickAnimation OnWaxStickAnimationStopped;
@@ -18,17 +19,20 @@ namespace Controllers
         private float   _cameraZDistance;
         private Vector3 _screenPosition;
         private Vector3 _newWorldPosition;
-    
+        private ObiFluidRenderer _obiFluidRenderer;
+        
         private void Awake()
         {
             camera = camera ? camera : Camera.main;
-            camera.GetComponent<ObiFluidRenderer>().particleRenderers[0] =
-                obiEmitter.GetComponent<ObiParticleRenderer>();
+            
+            _obiFluidRenderer = camera.GetComponent<ObiFluidRenderer>();
+            _obiFluidRenderer.particleRenderers[0] = obiParticleRenderer;
+            
         }
 
         private void Start()
         {
-            _cameraZDistance  = camera.WorldToScreenPoint(transform.position).z;
+            _cameraZDistance = camera.WorldToScreenPoint(transform.position).z;
             obiEmitter.speed = 0;
         }
 
@@ -60,7 +64,7 @@ namespace Controllers
 
             if (ShouldAnimationStop())
             {
-                StopAnimation();
+                OnWaxStickAnimationStopped?.Invoke();
             }
 
             obiEmitter.speed = 2;
@@ -72,19 +76,9 @@ namespace Controllers
             return obiEmitter.activeParticleCount == obiEmitter.particleCount;
         }
 
-        private void StopAnimation()
-        {
-            OnWaxStickAnimationStopped?.Invoke();
-        }
-
         private void OnTriggerExit(Collider other)
         {
             obiEmitter.speed = 0;
-        }
-
-        public void DisableWaxStick()
-        {
-            obiParticleRenderer.enabled = false;
         }
 
     }
