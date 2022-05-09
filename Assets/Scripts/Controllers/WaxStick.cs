@@ -1,6 +1,7 @@
-using System;
 using Obi;
+using GameState;
 using UnityEngine;
+
 
 namespace Controllers
 {
@@ -13,7 +14,7 @@ namespace Controllers
         [SerializeField] private ObiParticleRenderer obiParticleRenderer;
         
         public delegate void WaxStickAnimation();
-        public static event WaxStickAnimation OnWaxStickAnimationStopped;
+        public static event WaxStickAnimation OnWaxStickApplyStopped;
     
         private float   _cameraZDistance;
         private Vector3 _screenPosition;
@@ -22,8 +23,11 @@ namespace Controllers
         
         private void Awake()
         {
+            
             camera = camera ? camera : Camera.main;
             
+            // to have a fluid like simulation instead of particle we need to set obi particle renderer to obi fluid renderer
+            // more detail: http://obi.virtualmethodstudio.com/manual/6.1/fluidrendering.html#:~:text=Obi%20Particle%20Renderer,tiny%20spheres%20using%20this%20technique.
             _obiFluidRenderer = camera.GetComponent<ObiFluidRenderer>();
             _obiFluidRenderer.particleRenderers[0] = obiParticleRenderer;
             
@@ -51,7 +55,7 @@ namespace Controllers
             var mousePosX = touch.position.x;
             var mousePosY = touch.position.y;
 
-            _screenPosition = new Vector3(mousePosX, mousePosY, _cameraZDistance);
+            _screenPosition   = new Vector3(mousePosX, mousePosY, _cameraZDistance);
             _newWorldPosition = camera.ScreenToWorldPoint(_screenPosition);
 
             transform.position = _newWorldPosition;
@@ -61,16 +65,17 @@ namespace Controllers
         private void OnTriggerStay(Collider other)
         {
 
-            if (ShouldAnimationStop())
+            if (ShouldWaxApplyStop())
             {
-                OnWaxStickAnimationStopped?.Invoke();
+                OnWaxStickApplyStopped?.Invoke();
+                GameManager.Instance.SetState(new WaxRemoveState(GameManager.Instance));
             }
-
-            obiEmitter.speed = 2;
+            
+            obiEmitter.speed = emitSpeed;
 
         }
 
-        private bool ShouldAnimationStop()
+        private bool ShouldWaxApplyStop()
         {
             return obiEmitter.activeParticleCount == obiEmitter.particleCount;
         }

@@ -39,7 +39,7 @@ namespace Controllers
         public void DestroyGameUI()
         {
             DestroyHairyArmGameObject();
-            DestroyWaxStickGameObject();
+            DestroyWaxStickGameObjectAfter(0f);
         }
 
         private void CreateWaxStickGameObject()
@@ -52,10 +52,10 @@ namespace Controllers
             _hairyArmGameObject = Instantiate(hairyArmGamePrefab); 
         }
         
-        public void DestroyWaxStickGameObject()
+        public void DestroyWaxStickGameObjectAfter(float durationInSeconds)
         {
             if (_waxStickGameObject != null)
-                Destroy(_waxStickGameObject);
+                Destroy(_waxStickGameObject, durationInSeconds);
         }
 
         private void DestroyHairyArmGameObject()

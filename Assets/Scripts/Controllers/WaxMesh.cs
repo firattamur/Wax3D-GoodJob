@@ -6,28 +6,21 @@ namespace Controllers
 {
     public class WaxMesh : MonoBehaviour
     {
-
-        [SerializeField] private MeshRenderer meshRenderer;
-        [SerializeField] private MegaBend megaBend;
+    
         [SerializeField] private GameObject hairs;
-        [SerializeField] private float megaBendUpdateAngleValue = 2f;
+        [SerializeField] private MegaBend megaBend;
+        [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private float megaBendMaxAngle = 60f;
-            
+        [SerializeField] private float megaBendUpdateAngleValue = 2f;
+        
         private void OnEnable()
         {
-
-            WaxStick.OnWaxStickAnimationStopped += DryWaxMesh;
-
+            WaxStick.OnWaxStickApplyStopped += DryWaxMesh;
         }
-
-        private void OnDisable()
-        {
-            WaxStick.OnWaxStickAnimationStopped -= DryWaxMesh;
-        }
-
+        
         private void Update()
         {
-            TouchDrag(); 
+            ControlWaxMesh(); 
         }
 
         private void FixedUpdate()
@@ -40,26 +33,27 @@ namespace Controllers
                 megaBend.angle += megaBendUpdateAngleValue; 
 
             if (megaBend.angle > megaBendMaxAngle)
-                MoveWaxOutOfScreen();
+                MoveWaxMeshOutOfScreen();
 
         }
 
-        private void MoveWaxOutOfScreen()
+        private void MoveWaxMeshOutOfScreen()
         {
-            LeanTween.moveLocalY(gameObject, -10, 1f).setOnComplete(ChangeStateToMenu);
+            LeanTween.moveLocalY(gameObject, -10, 1f).setOnComplete(GameStateChangedToMenu);
         }
 
-        private void ChangeStateToMenu()
+        private void GameStateChangedToMenu()
         {
             GameManager.Instance.SetState(new MenuState(GameManager.Instance));
         }
         
-        private void TouchDrag()
+        private void ControlWaxMesh()
         {
 
             if (Input.touchCount <= 0)
             {
                 
+                // if not touch on screen resume wax remove guide animation for player
                 if (LeanTween.isPaused())
                     LeanTween.resume(gameObject);
                 
@@ -69,7 +63,7 @@ namespace Controllers
             
             var touch = Input.GetTouch(0);
             if (touch.phase != TouchPhase.Stationary && touch.phase != TouchPhase.Moved) return;
-
+    
             if (!LeanTween.isPaused())
                 LeanTween.pause(gameObject);
             
@@ -77,24 +71,26 @@ namespace Controllers
 
         private void DryWaxMesh()
         {
+            // increase alpha value of mesh renderer material for dry animation effect
             LeanTween.alpha(meshRenderer.gameObject, 1.0f, 2f).setOnComplete(OnWaxMeshDried);
         }
 
         private void OnWaxMeshDried()
         {
+            hairs.SetActive(false); 
             
-            hairs.SetActive(false);
-            
-            // simple animation loop to guide player to remove wax
+            // simple animation loop to guide player for removing wax
             LeanTween.value(gameObject, UpdateMegaBendAngleValue, 0f, 10f, 2f).setLoopPingPong();
-            
-            GameManager.Instance.SetState(new WaxRemoveState(GameManager.Instance));
-            
         }
         
         void UpdateMegaBendAngleValue( float val )
         {
             megaBend.angle = val;
+        }
+        
+        private void OnDisable()
+        {
+            WaxStick.OnWaxStickApplyStopped -= DryWaxMesh;
         }
 
     }
