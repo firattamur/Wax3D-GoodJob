@@ -15,14 +15,14 @@ namespace Controllers
         
         public void MoveMenuUIToScreen()
         {
-            LeanTween.moveY(gameTitle, 400, 1f).setEaseOutBounce();
-            LeanTween.moveY(playButton, -200, 1f).setEaseOutBounce(); 
+            LeanTween.moveY(gameTitle, -400, 1f).setEaseOutBounce();
+            LeanTween.moveY(playButton, 600, 1f).setEaseOutBounce(); 
         }
 
         public void MoveMenuUIToOutScreen()
         {
-            LeanTween.moveY(gameTitle, 1400, 1f).setEaseOutBounce();
-            LeanTween.moveY(playButton, -1400, 1f).setEaseOutBounce(); 
+            LeanTween.moveY(gameTitle, 150, 1f).setEaseOutBounce();
+            LeanTween.moveY(playButton, -100, 1f).setEaseOutBounce(); 
         }
 
         public void CreateAndMoveGameUIToScreen()
