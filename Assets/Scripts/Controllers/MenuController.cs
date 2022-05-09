@@ -5,28 +5,27 @@ namespace Controllers
     public class MenuController : MonoBehaviour
     {
 
+        [SerializeField] private RectTransform gameTitle;
+        [SerializeField] private RectTransform playButton;
         [SerializeField] private GameObject waxStickGamePrefab;
         [SerializeField] private GameObject hairyArmGamePrefab; 
-
+        
         private GameObject _waxStickGameObject;
         private GameObject _hairyArmGameObject;
-
-        public RectTransform gameTitle;
-        public RectTransform playButton;
-
-        public void DisplayMenuUI()
+        
+        public void MoveMenuUIToScreen()
         {
             LeanTween.moveY(gameTitle, 400, 1f).setEaseOutBounce();
             LeanTween.moveY(playButton, -200, 1f).setEaseOutBounce(); 
         }
 
-        public void UnDisplayMenuUI()
+        public void MoveMenuUIToOutScreen()
         {
             LeanTween.moveY(gameTitle, 1400, 1f).setEaseOutBounce();
             LeanTween.moveY(playButton, -1400, 1f).setEaseOutBounce(); 
         }
 
-        public void DisplayGameUI()
+        public void CreateAndMoveGameUIToScreen()
         {
             
             CreateWaxStickGameObject();
@@ -37,10 +36,10 @@ namespace Controllers
             
         }
 
-        public void UnDisplayGameUI()
+        public void DestroyGameUI()
         {
             DestroyHairyArmGameObject();
-            DestroyWaxStickGameObject();
+            DestroyWaxStickGameObjectAfter(0f);
         }
 
         private void CreateWaxStickGameObject()
@@ -53,10 +52,10 @@ namespace Controllers
             _hairyArmGameObject = Instantiate(hairyArmGamePrefab); 
         }
         
-        public void DestroyWaxStickGameObject()
+        public void DestroyWaxStickGameObjectAfter(float durationInSeconds)
         {
             if (_waxStickGameObject != null)
-                Destroy(_waxStickGameObject);
+                Destroy(_waxStickGameObject, durationInSeconds);
         }
 
         private void DestroyHairyArmGameObject()

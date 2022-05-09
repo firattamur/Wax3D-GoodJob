@@ -10,7 +10,7 @@ namespace GameState
 
         public override void StartState()
         {
-            gameManager.menuController.DestroyWaxStickGameObject();
+            gameManager.menuController.DestroyWaxStickGameObjectAfter(2f);
         }
         
     }

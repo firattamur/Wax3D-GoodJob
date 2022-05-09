@@ -1,29 +1,21 @@
 using System;
 using Controllers;
 using GameState;
+using Helper;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
 
     public MenuController menuController;
     
-    private State _currentState;
-    public static GameManager instance;
-
     private void Awake()
     {
-        
-        if (instance != null)
-            Destroy(instance);
-        else
-            instance = this;
-        
+        base.Awake();
     }
 
     public void SetState(State state)
     {
-        _currentState = state;
         state.StartState();
     }
     
