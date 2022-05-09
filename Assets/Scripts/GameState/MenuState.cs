@@ -10,8 +10,8 @@ namespace GameState
         public override void StartState()
         {
             
-            gameManager.menuController.UnDisplayGameUI();
-            gameManager.menuController.DisplayMenuUI();
+            gameManager.menuController.DestroyGameUI();
+            gameManager.menuController.MoveMenuUIToScreen();
             
         }
         
