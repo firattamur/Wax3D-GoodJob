@@ -22,6 +22,8 @@ namespace Controllers
         private void Awake()
         {
             camera = camera ? camera : Camera.main;
+            camera.GetComponent<ObiFluidRenderer>().particleRenderers[0] =
+                obiEmitter.GetComponent<ObiParticleRenderer>();
         }
 
         private void Start()

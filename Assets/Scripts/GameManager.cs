@@ -6,12 +6,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    public WaxMesh  waxMesh;
-    public WaxStick waxStick;
-
-    public GameObject waxStickGameObject;
-    public GameObject hairyArmGameObject;
-
+    public MenuController menuController;
+    
     private State _currentState;
     public static GameManager instance;
 
@@ -33,22 +29,12 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
-        SetState(new MenuState(this));   
+        SetState(new MenuState(this));
     }
 
-    private void Update()
+    public void StartGame()
     {
-        
-    }    
-    
-    public void DestroyWaxStick()
-    {
-        Destroy(waxStick);
+        SetState(new WaxApplyState(this));
     }
-    
-    public void DestroyLevel()
-    {
-        Destroy(hairyArmGameObject);
-    }
-    
+
 }
