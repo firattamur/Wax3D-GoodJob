@@ -48,9 +48,14 @@ namespace Controllers
 
         private void MoveWaxOutOfScreen()
         {
-            LeanTween.moveLocalY(gameObject, -10, 1f);
+            LeanTween.moveLocalY(gameObject, -10, 1f).setOnComplete(ChangeStateToMenu);
         }
 
+        private void ChangeStateToMenu()
+        {
+            GameManager.instance.SetState(new MenuState(GameManager.instance));
+        }
+        
         private void TouchDrag()
         {
 
