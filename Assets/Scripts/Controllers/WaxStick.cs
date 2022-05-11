@@ -16,7 +16,9 @@ namespace Controllers
         public delegate void WaxStickAnimation();
         public static event WaxStickAnimation OnWaxStickApplyStopped;
     
-        private float   _cameraZDistance;
+        private float _cameraZDistance;
+        private bool _isWaxStickMoving;
+        
         private Vector3 _screenPosition;
         private Vector3 _newWorldPosition;
         private ObiFluidRenderer _obiFluidRenderer;
@@ -47,10 +49,19 @@ namespace Controllers
         private void ControlWaxStick()
         {
 
-            if (Input.touchCount <= 0) return;
+            if (Input.touchCount <= 0)
+            {
+                _isWaxStickMoving = false;
+                return;
+            }
 
             var touch = Input.GetTouch(0);
-            if (touch.phase != TouchPhase.Stationary && touch.phase != TouchPhase.Moved) return;
+            
+            if (touch.phase != TouchPhase.Stationary && touch.phase != TouchPhase.Moved)
+            {
+                _isWaxStickMoving = false;
+                return;
+            }
 
             var mousePosX = touch.position.x;
             var mousePosY = touch.position.y;
@@ -59,6 +70,7 @@ namespace Controllers
             _newWorldPosition = camera.ScreenToWorldPoint(_screenPosition);
 
             transform.position = _newWorldPosition;
+            _isWaxStickMoving  = true;
 
         }
 
@@ -68,15 +80,30 @@ namespace Controllers
             if (ShouldWaxApplyStop())
             {
 
-                obiEmitter.speed = 0;
+                DisableObiEmitter();
                 
                 OnWaxStickApplyStopped?.Invoke();
                 GameManager.Instance.SetState(new WaxRemoveState(GameManager.Instance));
+
+                return;
                 
             }
-            
-            obiEmitter.speed = emitSpeed;
 
+            if (_isWaxStickMoving)
+                EnableObiEmitter();
+            else
+                DisableObiEmitter();
+
+        }
+
+        private void EnableObiEmitter()
+        {
+            obiEmitter.speed = emitSpeed;
+        }
+
+        private void DisableObiEmitter()
+        {
+            obiEmitter.speed = 0;
         }
 
         private bool ShouldWaxApplyStop()
@@ -86,7 +113,7 @@ namespace Controllers
 
         private void OnTriggerExit(Collider other)
         {
-            obiEmitter.speed = 0;
+            DisableObiEmitter();
         }
 
     }

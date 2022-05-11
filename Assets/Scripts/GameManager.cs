@@ -1,8 +1,7 @@
-using System;
 using Controllers;
 using GameState;
 using Helper;
-using UnityEngine;
+
 
 public class GameManager : Singleton<GameManager>
 {

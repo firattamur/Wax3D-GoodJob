@@ -795,21 +795,21 @@ MonoBehaviour:
     particleZWrite: 0
     thicknessCutoff: 1.2
     thicknessDownsample: 2
-    generateSurface: 1
+    generateSurface: 0
     blurRadius: 0.02
     surfaceDownsample: 1
-    lighting: 1
+    lighting: 0
     smoothness: 0.8
     metalness: 0
     ambientMultiplier: 1
-    generateReflection: 1
+    generateReflection: 0
     reflection: 0.2
-    generateRefraction: 1
+    generateRefraction: 0
     transparency: 1
     absorption: 5
     refraction: 0.01
     refractionDownsample: 1
-    generateFoam: 1
+    generateFoam: 0
     foamDownsample: 1
 --- !u!1 &1626400563
 GameObject:
