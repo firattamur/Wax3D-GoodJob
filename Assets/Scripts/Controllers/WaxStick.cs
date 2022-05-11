@@ -67,8 +67,12 @@ namespace Controllers
 
             if (ShouldWaxApplyStop())
             {
+
+                obiEmitter.speed = 0;
+                
                 OnWaxStickApplyStopped?.Invoke();
                 GameManager.Instance.SetState(new WaxRemoveState(GameManager.Instance));
+                
             }
             
             obiEmitter.speed = emitSpeed;

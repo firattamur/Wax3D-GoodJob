@@ -77,10 +77,11 @@ namespace Controllers
 
         private void OnWaxMeshDried()
         {
-            hairs.SetActive(false); 
-            
+
+            hairs.SetActive(false);
             // simple animation loop to guide player for removing wax
             LeanTween.value(gameObject, UpdateMegaBendAngleValue, 0f, 10f, 2f).setLoopPingPong();
+            
         }
         
         void UpdateMegaBendAngleValue( float val )
