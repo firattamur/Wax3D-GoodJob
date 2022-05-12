@@ -14,6 +14,7 @@ namespace Controllers
         [SerializeField] private float megaBendUpdateAngleValue = 0.5f;
 
         private Vector2 _firstTouchPosition;
+        private Vector2 _waxRemoveDirection;
         private float _megaBendGizmoRotationZ = 20;
         
         private void OnEnable()
@@ -44,7 +45,9 @@ namespace Controllers
 
         private void MoveWaxMeshOutOfScreen()
         {
-            LeanTween.moveLocalY(gameObject, -10, 1f).setOnComplete(GameStateChangedToMenu);
+            
+            LeanTween.moveLocal(gameObject, _waxRemoveDirection * -10, 1f).setOnComplete(GameStateChangedToMenu);
+            // LeanTween.moveLocalY(gameObject, -10, 1f).setOnComplete(GameStateChangedToMenu);
         }
 
         private void GameStateChangedToMenu()
@@ -77,10 +80,10 @@ namespace Controllers
             if (!LeanTween.isPaused())
                 LeanTween.pause(gameObject);
 
-            var direction = _firstTouchPosition - touch.position;
-            direction = direction.normalized;
+            _waxRemoveDirection = _firstTouchPosition - touch.position;
+            _waxRemoveDirection = _waxRemoveDirection.normalized;
             
-            _megaBendGizmoRotationZ = Angle(direction.x, direction.y);
+            _megaBendGizmoRotationZ = Angle(_waxRemoveDirection.x, _waxRemoveDirection.y);
             
         }
 
