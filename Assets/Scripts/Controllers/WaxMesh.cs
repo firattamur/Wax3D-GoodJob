@@ -10,8 +10,11 @@ namespace Controllers
         [SerializeField] private GameObject hairs;
         [SerializeField] private MegaBend megaBend;
         [SerializeField] private MeshRenderer meshRenderer;
-        [SerializeField] private float megaBendMaxAngle = 60f;
-        [SerializeField] private float megaBendUpdateAngleValue = 2f;
+        [SerializeField] private float megaBendMaxAngle = 1000f;
+        [SerializeField] private float megaBendUpdateAngleValue = 0.5f;
+
+        private Vector2 _firstTouchPosition;
+        private float _megaBendGizmoRotationZ = 20;
         
         private void OnEnable()
         {
@@ -29,6 +32,8 @@ namespace Controllers
             if (megaBend.angle == 0)
                 return;
 
+            megaBend.gizmoRot.z = _megaBendGizmoRotationZ;
+            
             if (LeanTween.isPaused())
                 megaBend.angle += megaBendUpdateAngleValue; 
 
@@ -62,13 +67,28 @@ namespace Controllers
             }
             
             var touch = Input.GetTouch(0);
-            if (touch.phase != TouchPhase.Stationary && touch.phase != TouchPhase.Moved) return;
+            
+            if (touch.phase != TouchPhase.Stationary && touch.phase != TouchPhase.Moved)
+            {
+                _firstTouchPosition = touch.position; 
+                return;
+            }
     
             if (!LeanTween.isPaused())
                 LeanTween.pause(gameObject);
+
+            var direction = _firstTouchPosition - touch.position;
+            direction = direction.normalized;
+            
+            _megaBendGizmoRotationZ = Angle(direction.x, direction.y);
             
         }
 
+        private float Angle(float x, float y)
+        {
+            return (Mathf.Atan2(y, x) * 180 / Mathf.PI - 70 + 360) % 360;
+        }
+        
         private void DryWaxMesh()
         {
             // increase alpha value of mesh renderer material for dry animation effect
