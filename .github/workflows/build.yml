@@ -48,7 +48,7 @@ jobs:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
 
-      - uses: peter-evans/repository-dispatch@v1
+      - uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: firattamur/Wax3D-GoodJob
