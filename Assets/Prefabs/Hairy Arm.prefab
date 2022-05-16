@@ -16106,7 +16106,7 @@ MonoBehaviour:
   megaBend: {fileID: 5645321146703072384}
   meshRenderer: {fileID: 7462600816881730405}
   megaBendMaxAngle: 60
-  megaBendUpdateAngleValue: 1
+  megaBendUpdateAngleValue: 3
 --- !u!114 &3642131903721522842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18602,14 +18602,14 @@ MonoBehaviour:
     - {x: 0, y: 0, z: 0}
     - {x: 0, y: 0, z: 0}
   corners:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: -15.011074, y: 0, z: -5.0962}
+  - {x: -15.011074, y: 0, z: 12.282996}
+  - {x: 10.003868, y: 0, z: 12.282996}
+  - {x: 10.003868, y: 0, z: -5.0962}
+  - {x: -15.011074, y: 6, z: -5.0962}
+  - {x: -15.011074, y: 6, z: 12.282996}
+  - {x: 10.003868, y: 6, z: 12.282996}
+  - {x: 10.003868, y: 6, z: -5.0962}
   steps: 50
   verts:
   - {x: -8.493103, y: 5.002839, z: 5.8656654}
