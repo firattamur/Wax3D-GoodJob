@@ -25,9 +25,9 @@ jobs:
       fail-fast: false
       matrix:
         targetPlatform:
-          - iOS                       # Build an iOS player.
-          - Android                   # Build an Android .apk standalone app.
-          - WebGL                     # WebGL.
+          - iOS                       
+          - Android                  
+          - WebGL                     
     steps:
       - uses: actions/checkout@v2
         with:
