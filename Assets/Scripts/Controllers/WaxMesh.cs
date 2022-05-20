@@ -45,9 +45,7 @@ namespace Controllers
 
         private void MoveWaxMeshOutOfScreen()
         {
-            
             LeanTween.moveLocal(gameObject, _waxRemoveDirection * -10, 1f).setOnComplete(GameStateChangedToMenu);
-            // LeanTween.moveLocalY(gameObject, -10, 1f).setOnComplete(GameStateChangedToMenu);
         }
 
         private void GameStateChangedToMenu()
